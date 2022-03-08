@@ -1,0 +1,26 @@
+1) use assignments // for creating new db
+
+2) db.createCollection("users") //for creating a new collection 
+
+3) db.users.insert({"first_name":"Ankush","last_name":"Gupta","email":"a@a.com","gender":"male","ip_address":"12.36.32.5","age":21}) 
+// insert one item at a time
+
+4)   db.users.insertMany([{"first_name":"Ankush","last_name":"Gupta","email":"a@a.com","gender":"male","ip_address":"12.36.32.5","age":21},{"first_name":"sourabh","last_name":"gupta","email":"s@s.com","gender":"male","ip_adress":"23.53.13.66.64","age":22},{"first_name":"ankit","last_name":"kumar","email":"a@k.com","gender":"male","ip_address":"22.276.32.5","age":47},{"first_name":"radhika","last_name":"Sharma","email":"r@a.com","gender":"female","ip_address":"12.36.32.5","age":47},{"first_name":"baby","last_name":"Gupta","email":"b@b.com","gender":"female","ip_address":"90.36.32.5","age":45},{"first_name":"manisha","last_name":"Rai","email":"r@m.com","gender":"female","ip_address":"12.972.32.5","age":25},{"first_name":"mudit","last_name":"shukla","email":"m@m.com","gender":"male","ip_address":"12.36.132.5","age":21},{"first_name":"piyush","last_name":"tripathi","email":"p@p.com","gender":"male","ip_address":"082.36.32.5","age":22},{"first_name":"manjeet","last_name":"kumar","email":"m@m.com","gender":"male","ip_address":"322.36.22.5","age":24},{"first_name":"ritul","last_name":"yadav","email":"r@y.com","gender":"female","ip_address":"12.326.132.5","age":25}]) 
+// insert more than one item at a time
+
+5) db.users.find().pretty() // to find all data inside the collection
+
+6) db.users.findOne({gender:"male"}) // to find top most data from the collection 
+
+7) db.users.update({"first_name":"Ankush"},{$set:{"city":"lko"}}) //  to update one items of the collection 
+
+8)  db.users.updateMany({"age":{$gt:25}},{$set:{"cate:"Youth"}}) //  to upadte more than one data at a time 
+
+9) db.users.remove({"age":21}) // delete data from collection using remove fun 
+
+10 ) db.users.deleteOne({"gender":"male"}) // delete only 1st one data from collection acc to given condition
+
+11) db.users.deleteMany({"gender":"male"}) // delete all the data from collection acc to matching given condition
+
+12) db.dropDatabase() // to drop database 
+
