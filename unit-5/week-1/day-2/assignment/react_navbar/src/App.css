@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+  align-items: center;
+}
+
+img {
+  width: 5%;
+  /* pointer-events: none; */
+}
+
+.link {
+  display: flex;
+  gap: 20px;
+
+}
+
+.mybtn {
+  padding: 5px 15px;
+  background-color: aqua;
+  color: white;
+  border: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+}
