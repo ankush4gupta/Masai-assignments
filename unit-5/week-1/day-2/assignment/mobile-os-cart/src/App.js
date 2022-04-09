@@ -2,7 +2,22 @@
 import './App.css';
 
 
-let arr1 = [{ t1: "Mobile Operating System", t2: "Android", t3: "Blackberry", t4: "iPhone", t5: "Window Phones" }, { t1: "Mobile Manufactures", t2: "Sumsung", t3: "HTC", t4: "MicroMax", t5: "Apple" }]
+let arr1 = [{
+  t1: "Mobile Operating System",
+  data: [{ t: "Android", style: "dics" },
+  { t: "Blackberry", style: "dics" },
+  { t: "iPhone", style: "dics" },
+  { t: "Window Phones", style: "dics" }
+  ]
+},
+{
+  t1: "Mobile Manufactures",
+  data: [{ t: "Sumsung", style: "square" },
+  { t: "HTC", style: "square" },
+  { t: "MicroMax", style: "dics" },
+  { t: "Apple", style: "circle" }
+  ]
+}];
 function App() {
   return (
     <div className="App">
@@ -22,13 +37,15 @@ function Cart({ skill }) {
   return (
     <div>
       <h3>{skill.t1}</h3>
-     
+
 
       <ul>
-        <li>{skill.t2}</li>
-        <li>{skill.t3}</li>
-        <li>{skill.t4}</li>
-        <li>{skill.t5} </li>
+        {
+          skill.data.map((tt) => {
+            return <li className={tt.style}>{tt.t}</li>
+          })
+
+        }
 
       </ul>
     </div>)
