@@ -1,0 +1,89 @@
+.container {
+    width: 35%;
+
+    margin: auto;
+    border: 2px solid green;
+    padding: 5% 7%;
+    background-color: #cecece;
+
+}
+
+.main,
+.todoitems {
+    /* width: 40%; */
+    /* border: 2px solid red; */
+}
+
+/**************** TodoInput.js************* */
+.main {
+    margin-top: 20px;
+}
+
+#todoitems:HOVER {
+    border: 2px solid black;
+}
+
+.title {
+    padding: 15px 50px;
+    width: 55%;
+    font-size: 25px;
+    border-radius: 15px;
+    border: transparent;
+
+
+}
+
+.title::placeholder {
+    color: black;
+    font-weight: 400;
+}
+
+.addbtn {
+    padding: 15px 25px;
+    font-size: 25px;
+    border-radius: 15px;
+    border: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* *******todoitems.js********** */
+
+#todoitems {
+    margin: 6px;
+}
+
+#todoitems>div {
+    display: flex;
+    gap: 10px;
+    padding: 3px;
+}
+
+#todoitems>div>button {
+    padding: 0px 20px;
+    border-radius: 50%;
+    border: transparent;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    /* background-color: white; */
+    border-radius: 15px;
+    border: transparent;
+}
+
+.Green {
+    background-color: green;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    /* background-color: white; */
+    border-radius: 15px;
+    border: transparent;
+}
