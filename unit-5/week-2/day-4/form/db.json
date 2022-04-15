@@ -1,0 +1,31 @@
+{
+  "user": [
+    {
+      "username": "ankush",
+      "age": "21",
+      "address": "Shanti Nagar",
+      "department": "Marketing",
+      "salary": "21000",
+      "marital": "Single",
+      "id": 1
+    },
+    {
+      "username": "Sourabh",
+      "age": "21",
+      "address": "Lucknow",
+      "department": "Marketing",
+      "salary": "10",
+      "marital": "Single",
+      "id": 2
+    },
+    {
+      "username": "Mohit",
+      "age": "32",
+      "address": "Kanpur",
+      "department": "",
+      "salary": "21000",
+      "marital": "Married",
+      "id": 3
+    }
+  ]
+}
