@@ -11,7 +11,6 @@ const verifyToken = (token) => {
     })
 
 }
-
 const authenticate = async (req, res, next) => {
 
     if (!req.headers.authorization)
@@ -30,7 +29,7 @@ const authenticate = async (req, res, next) => {
         console.log(err)
         return res.status(400).send({ message: "Authorization token not found or incorrect" })
     }
-
+    
     console.log(decoded)
 
     req.userID = decoded.user._id;

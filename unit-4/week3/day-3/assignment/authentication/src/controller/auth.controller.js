@@ -15,9 +15,17 @@ const register = async (req, res) => {
         if (user) {
             return res.send({ message: "User is already exist " })
         }
-
-        user = await User.create(req.body);
+        // const filepaths = req.files.map((file) => {
+        //     return file.path;
+        // })
+        user = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            Image: req.file.path
+        });
         const token = jwt.sign({ user }, process.env.JWT_SECRETKEY)
+        console.log(token)
         res.status(201).send({ user, token })
     } catch (error) {
         res.status(500).send(error.message)
