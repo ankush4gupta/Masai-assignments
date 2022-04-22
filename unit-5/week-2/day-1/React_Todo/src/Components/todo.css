@@ -1,0 +1,36 @@
+.todo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    /* padding: 5px; */
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 1px 0px;
+}
+
+.todoin {
+    width: 10%;
+}
+
+.complete {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding-left: 16px;
+
+
+}
+
+.complete>p {
+    margin: 1px;
+    text-decoration: line-through;
+    color: rgb(109, 107, 107)
+}
+
+.comptbtn {
+    padding: 9px 0px;
+    font-size: 18px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
