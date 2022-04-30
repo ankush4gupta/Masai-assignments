@@ -1,16 +1,31 @@
-
+import { useEffect, useState } from 'react'
 import './App.css'
-import { addCount, addTodo } from './Redux/action'
+import axios from 'axios'
+import { addCount } from './Redux/CounterFeature/action'
+import { addTodo, getdata } from './Redux/Todos/action'
 // import { store } from "./Redux/store";
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from 'react';
+// import { useState } from 'react';
 function App() {
   const dispatch = useDispatch()
-  const counter = useSelector((store) => store.counter);
-  const todos = useSelector((store) => store.todo)
-  const [text, settext] = useState()
+  const counter = useSelector((store) => store.counter.counter);
+  const todos = useSelector((store) => store.todos.todo);
+  console.log("todos", todos)
+  const [text, settext] = useState();
+  useEffect(() => {
+    dispatch(getdata())
+  }, [])
+  // const getdata = () => {
+  //   axios.get(`http://localhost:8080/todos`).then((res) => {
+  //     dispatch(addTodo(res.data))
+  //   })
+  // }
   const handleTodo = () => {
-    dispatch(addTodo({ title: text, status: false }))
+    // dispatch(addTodo({ title: text, status: false }))
+    axios.post(`http://localhost:8080/todos`, { title: text, status: false });
+    () => {
+      dispatch(getdata())
+    }
 
   }
   return (
@@ -30,7 +45,7 @@ function App() {
         <button onClick={handleTodo}>Add todo</button>
         {
           todos.map((e) => {
-            return <div>{e.title}</div>
+            return <div key={e.id}>{e.title}</div>
           })
         }
       </div>
