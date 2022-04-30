@@ -7,15 +7,15 @@ export const addTodo = (data) => {
         payload: data
     }
 }
-export const ToggleTodo = (data) => {
+export const ToggleTodo = (status) => {
     return {
         type: TOGGLE_TODO,
-        payload: data
+        payload: status
     }
 }
-export const DeleteTodo = (data) => {
+export const DeleteTodo = (id) => {
     return {
         type: DELETE_TODO,
-        payload: data
+        payload: id
     }
 }

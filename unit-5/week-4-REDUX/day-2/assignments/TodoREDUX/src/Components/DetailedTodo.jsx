@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 
 
 import { addTodo, ToggleTodo, DeleteTodo } from "../REDUX/Todo/action";
@@ -20,19 +20,22 @@ export const DetaildTodo = () => {
 
     const handleStatus = (id) => {
         dispatch(ToggleTodo(id))
+
         // console.log("todos", todos)
     }
     // console.log(one[0].title, "one")
     return <div>
-
-        {
-            !todos ? <div >Deleted</div> : <div>
+        <Link Link to="/">Home</Link>
+        {!todos ? <h1>Deleted</h1> :
+            <div>
                 <h3>{todos.title}</h3>
                 <button onClick={() => {
                     handleStatus(todos.id)
                 }}>{!todos.status ? "Not completed" : "Completed"}</button>
                 <button onClick={() => {
                     dispatch(DeleteTodo(todos.id))
+                    alert("deleted")
+
                 }}>Delete</button>
             </div>
         }

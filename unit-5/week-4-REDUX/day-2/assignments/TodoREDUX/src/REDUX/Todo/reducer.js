@@ -9,23 +9,14 @@ export const todoReducer = (store = init, { type, payload }) => {
                 ...store, todos: payload
             };
         case TOGGLE_TODO:
-            // console.log(store.todos[1].status, "store.todos")
-            if (store.todos.find(e => e.id === payload).status) {
-                
-                store.todos.find(e => e.id === payload).status = false;
-            } else {
-              
-                store.todos.find(e => e.id === payload).status = true;
-            }
-            return store;
+           return {
+               ...store,
+               todos: store.todos.map(e => e.id === payload?{...e,status : !e.status}:e)
+           }
         case DELETE_TODO:
-            let newtodos = store.todos.filter((e) => {
-                return e.id !== payload;
-            })
-
-            console.log(newtodos);
+            
             return {
-                ...store, todos: newtodos
+                ...store, todos:store.todos.filter(e =>e.id !== payload)
             }
 
 
