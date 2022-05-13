@@ -1,0 +1,32 @@
+body {
+    position: relative;
+}
+
+.section-1 {
+    position: absolute;
+    top: 60vh;
+    background-color: #39393c;
+}
+
+.main_container {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin: auto;
+
+    /* border: 2px solid red; */
+
+}
+
+.container1,
+.container2,
+.container3,
+.container4 {
+    /* border: 2px solid black; */
+    width: 100%;
+    margin: 10px;
+}
+
+.main_container img {
+    width: 100%;
+}
