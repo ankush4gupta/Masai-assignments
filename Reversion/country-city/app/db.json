@@ -1,0 +1,17 @@
+{
+    "country": [
+        {
+            "id": 1,
+            "name": "India"
+        },
+        {
+            "id": 2,
+            "name": "USA"
+        }
+    ],
+    "cities": [{
+        "id" : 1,
+        "cityname" : "Lucknow",
+        "country" : "India"
+    }]
+}
