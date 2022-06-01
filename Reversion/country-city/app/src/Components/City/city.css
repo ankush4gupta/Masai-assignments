@@ -1,0 +1,30 @@
+.city-container{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid teal;  
+    width: 25%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 3px;
+    /* background-color: aqua; */
+}
+.input-margin{
+margin-bottom: 28px;
+}
+select{
+    /* background-color: aqua; */
+    border: transparent;
+    border-bottom: 2px solid lightgray;
+    margin-bottom: 28px;
+    padding: 10px;
+}
+select:hover{
+    border-bottom: 2px solid #1976d2;
+}
+select option{
+    padding: 50px !important;
+}
+select ::placeholder{
+    color:black
+}
