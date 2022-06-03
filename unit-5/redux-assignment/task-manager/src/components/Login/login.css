@@ -1,0 +1,27 @@
+.loginContainer{
+    width: 70%;
+}
+.login_heading{
+    font-size: 30px;
+    font-weight: 600;
+    font-style:  italic;
+    
+}
+form{
+    width  : 50%;
+    border: 1px solid black;
+    margin: auto;
+    padding: 10px;   
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: teal;
+box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+form>input{
+    margin-top: 10px;
+}
+form>input[type="submit"]:hover{
+background-color: white;
+color : teal;
+cursor: pointer;
+}

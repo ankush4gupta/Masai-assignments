@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="" id="search">
+        <button>Enter</button>
+    </div>
+    
+</body>
+</html>
+<script src="./index.js">
+    const token = "AAAAAAAAAAAAAAAAAAAAACAQcwEAAAAAhkEdfd2tLCtQLWS6EoGoz%2FNx2Wo%3D20J2VqJ1H5fYj0OjwP2ZGjxRCQUTM6g7HxzrJJMr67B6EVrRPW";
+displayTweet()
+    async function displayTweet(){
+        const response = await fetch(`https://api.twitter.com/2/tweets?ids=1278747501642657792`,{
+            method : "Get",
+            headers: {
+               
+                "authorization": `Bearer ${token}`
+            }
+        }) 
+        const data =  await response.json();
+        console.log(data,"data")
+    }
+</script>
