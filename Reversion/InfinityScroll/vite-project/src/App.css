@@ -1,0 +1,21 @@
+#container {
+  border: 1px solid red;
+  height: 500px;
+  width: 500px;
+  margin: 50px auto;
+  overflow: scroll;
+  
+}
+.sub{
+display: flex;
+border: 1px solid teal;
+margin: 5px;
+justify-content: space-around;
+}
+img{
+  width: 20%;
+}
+
+h1 {
+  text-align: center;
+}
