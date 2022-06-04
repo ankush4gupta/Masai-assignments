@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div>
         <input type="text" name="" id="search">
-        <button>Enter</button>
+        <button onclick="displayTweet()">Enter</button>
     </div>
-    
+
 </body>
+
 </html>
-<script src="./index.js">
+<script>
     const token = "AAAAAAAAAAAAAAAAAAAAACAQcwEAAAAAhkEdfd2tLCtQLWS6EoGoz%2FNx2Wo%3D20J2VqJ1H5fYj0OjwP2ZGjxRCQUTM6g7HxzrJJMr67B6EVrRPW";
-displayTweet()
-    async function displayTweet(){
-        const response = await fetch(`https://api.twitter.com/2/tweets?ids=1278747501642657792`,{
-            method : "Get",
+
+    async function displayTweet() {
+        console.log("clicked")
+        const response = await fetch(`https://api.twitter.com/2/tweets?ids=1278747501642657792`, {
+            method: "GET",
             headers: {
-               
-                "authorization": `Bearer ${token}`
+
+                "authorization": `Bearer ${token}`,
+                 "mode": 'cors'
             }
-        }) 
-        const data =  await response.json();
-        console.log(data,"data")
+        })
+        const data = await response.json();
+        console.log(data, "data")
     }
+
+    // *******************************************
+    // var url = "https://api.twitter.com/2/tweets/1527152372413251584/quote_tweets";
+
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("GET", url);
+
+    //     xhr.setRequestHeader("Accept", "application/json");
+    //     xhr.setRequestHeader("Authorization", "Bearer AAAAAAAAAAAAAAAAAAAAACAQcwEAAAAAhkEdfd2tLCtQLWS6EoGoz%2FNx2Wo%3D20J2VqJ1H5fYj0OjwP2ZGjxRCQUTM6g7HxzrJJMr67B6EVrRPW");
+
+    //     xhr.onreadystatechange = function () {
+    //         if (xhr.readyState === 4) {
+    //             console.log(xhr.status);
+    //             console.log(xhr.responseText);
+    //         }
+    //     };
+
+    //     xhr.send();
+
+    // 
+    // Get stream rules
+//         async function getRules() {
+//             const response = await needle("get", rulesURL, {
+//                 headers: {
+//                     Authorization: `Bearer ${token
+// }`,
+//                 },
+//             });
+//             console.log(response.body);
+//             return response.body;
+//         }
+
 </script>

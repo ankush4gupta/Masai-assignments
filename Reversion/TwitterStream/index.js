@@ -1,58 +1,116 @@
+const http = require("http");
+const path = require("path");
 const express = require("express");
-const app =  express.app();
+const socketIo = require("socket.io");
+const needle = require("needle");
+const config = require("dotenv").config();
+const TOKEN = process.env.TWITTER_BEARER_TOKEN;
+const PORT = process.env.PORT || 3000;
 
+const app = express();
 
-require("dotenv").config()
-// Get Tweet objects by ID, using bearer token authentication
-// https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/quick-start
+const server = http.createServer(app);
+const io = socketIo(server);
 
-const needle = require('needle');
+app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./", "index.html"));
+});
 
-// The code below sets the bearer token from your environment variables
-// To set environment variables on macOS or Linux, run the export command below from the terminal:
-// export BEARER_TOKEN='YOUR-TOKEN'
-const token = process.env.BEARER_TOKEN;
+const rulesURL = "https://api.twitter.com/2/tweets/search/stream/rules";
+const streamURL =
+    "https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id";
 
-const endpointURL = "https://api.twitter.com/2/tweets?ids=";
+const rules = [{ value: "art" }];
 
-async function getRequest() {
-
-    // These are the parameters for the API request
-    // specify Tweet IDs to fetch, and any additional fields that are required
-    // by default, only the Tweet ID and text are returned
-    const params = {
-        "ids": "1278747501642657792,1255542774432063488", // Edit Tweet IDs to look up
-        "tweet.fields": "lang,author_id", // Edit optional query parameters here
-        "user.fields": "created_at" // Edit optional query parameters here
-    }
-
-    // this is the HTTP header that adds bearer token authentication
-    const res = await needle('get', endpointURL, params, {
+// Get stream rules
+async function getRules() {
+    const response = await needle("get", rulesURL, {
         headers: {
-            "User-Agent": "v2TweetLookupJS",
-            "authorization": `Bearer ${token}`
-        }
-    })
-
-    if (res.body) {
-        return res.body;
-    } else {
-        throw new Error('Unsuccessful request');
-    }
+            Authorization: `Bearer ${TOKEN}`,
+        },
+    });
+    // console.log(response.body);
+    return response.body;
 }
 
-(async () => {
+// Set stream rules
+async function setRules() {
+    const data = {
+        add: rules,
+    };
+
+    const response = await needle("post", rulesURL, data, {
+        headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${TOKEN}`,
+        },
+    });
+
+    return response.body;
+}
+
+// Delete stream rules
+async function deleteRules(rules) {
+    if (!Array.isArray(rules.data)) {
+        return null;
+    }
+
+    const ids = rules.data.map((rule) => rule.id);
+
+    const data = {
+        delete: {
+            ids: ids,
+        },
+    };
+
+    const response = await needle("post", rulesURL, data, {
+        headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${TOKEN}`,
+        },
+    });
+
+    return response.body;
+}
+
+function streamTweets(socket) {
+    const stream = needle.get(streamURL, {
+        headers: {
+            Authorization: `Bearer ${TOKEN}`,
+        },
+    });
+
+    stream.on("data", (data) => {
+        try {
+            const json = JSON.parse(data);
+            console.log(json);
+            socket.emit("tweet", json);
+        } catch (error) { }
+    });
+
+    return stream;
+}
+
+io.on("connection", async () => {
+    console.log("Client connected...");
+
+    let currentRules;
 
     try {
-        // Make request
-        const response = await getRequest();
-        console.dir(response, {
-            depth: null
-        });
+        //   Get all stream rules
+        currentRules = await getRules();
 
-    } catch (e) {
-        console.log(e);
-        process.exit(-1);
+        // Delete all stream rules
+        await deleteRules(currentRules);
+
+        // Set rules based on array above
+        await setRules();
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
     }
-    process.exit();
-})();
+
+    streamTweets(io);
+});
+
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
