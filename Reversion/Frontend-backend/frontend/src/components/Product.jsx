@@ -10,11 +10,12 @@ export const Product = () => {
     const [cate, setcate] = useState(searchParams.get("cate")||[]);
     const [sort, setsort] = useState("sort_acc");
     const [page, setpage] = useState([]);
+    const [next,setnext]= useState(1)
     
 
     useEffect(() => {
         fetchProduct()
-    }, [color, cate, brand, sort]);
+    }, [color, cate, brand, sort, next]);
     useEffect(()=>{
         setSearchParams({brand,color,cate})
     },[brand,color,cate])
@@ -22,7 +23,7 @@ export const Product = () => {
     console.log(cate, "brand")
     const fetchProduct = async () => {
         try {
-            let res = await fetch(`http://localhost:3008/product?color=${color}&name=${brand}&type=${cate}&sort=${sort}`)
+            let res = await fetch(`http://localhost:3008/product?color=${color}&name=${brand}&type=${cate}&sort=${sort}&page=${next}`)
             let result = await res.json();
             setdata(result.product);
             setpage(result.pagecount);
@@ -35,6 +36,7 @@ export const Product = () => {
     }
     console.log(page, "page")
     const handlebrand = (e, value) => {
+        setnext(1)
         if (value == "brand") {
             if (e.target.checked) {
                 setbrand([...brand, e.target.value])
@@ -114,7 +116,7 @@ export const Product = () => {
             <div className="Container">
                 {
                     data.map((e) => {
-                        return <div className="product-card">
+                        return <div  key={e._id}className="product-card">
                             <img src={e.image.img1} alt="" />
                             <p>{e.name}</p>
                             <p>{e.details}</p>
@@ -130,7 +132,15 @@ export const Product = () => {
             </div>
 
         </div>
-        <div> Page 
+        <div className="pagecount"><p onClick={()=>{
+            if(next>1){
+                setnext(next-1)
+            }
+        }}>&#60; &#60; Privous</p> Page no : {next} <p onClick={() => {
+            if (next < page) {
+                setnext(next + 1)
+            }
+        }}>Next &#62;&#62;</p>
             
         </div>
 

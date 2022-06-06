@@ -42,3 +42,17 @@ ul{
     gap:5px;
     margin: 5px;
 }
+.pagecount{
+    display: flex;
+    justify-content: center;
+    gap :30px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.pagecount :hover {
+    color: wheat ;
+    background-color: teal;
+    cursor: pointer;
+    
+}
