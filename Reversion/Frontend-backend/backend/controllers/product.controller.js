@@ -46,9 +46,9 @@ router.get("/", async (req, res) => {
        
     //    finding product items based on different queries
         product = await Product.find(filter).skip((page - 1) * item).sort(sort).limit(item).lean().exec();
-      
+        let pagecount = await Product.find(filter).countDocuments()
         //  finding how many product are found and diving into separte page count
-        let pagecount = Math.ceil(product.length / item)
+        pagecount = Math.ceil(pagecount / item)
         res.status(201).send({ product, pagecount })
 
     } catch (error) {
