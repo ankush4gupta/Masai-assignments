@@ -9,6 +9,7 @@ const Product = require("../models/product.model");
 // All query route------------------------------->
 
 router.get("/", async (req, res) => {
+    // setting up default page number and items per page and sorting method by accending method
     const page = req.query.page || 1;
     const item = req.query.items || 10;
     let sort = req.query.sort || "sort_acc" 
@@ -19,30 +20,34 @@ router.get("/", async (req, res) => {
        
         let product;
         let filter = {};
-        
+        //  query for color filter
         if (req.query.color) {
             const color = req.query.color.split(",")
             filter.color = { $in: color }
         }
+        // query for brand name filter
         if (req.query.name) {
             const name = req.query.name.split(",")
             filter.name = { $in: name }
-        } if (req.query.type) {
+        } 
+        // query for colthes type filter
+        if (req.query.type) {
             const type = req.query.type.split(",")
             filter.type = { $in: type }
         }
-        if (req.query.discount) {
-            filter.discount = { $gte: req.query.discount }
-        }
+
+        //  setting up sorting methods
+        
        if(sort=="sort_acc"){
            sort = {"discount_price" : 1}
        }else{
            sort = { "discount_price": -1 }
        }
-        console.log(filter)
-
+       
+    //    finding product items based on different queries
         product = await Product.find(filter).skip((page - 1) * item).sort(sort).limit(item).lean().exec();
-        // let pagecount = await Product.countDocuments()
+      
+        //  finding how many product are found and diving into separte page count
         let pagecount = Math.ceil(product.length / item)
         res.status(201).send({ product, pagecount })
 
@@ -62,13 +67,5 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// router.post("", async (req, res) => {
-//     try {
-//         const product = await Product.create(req.body);
-//         res.status(201).send(product)
-//     } catch (error) {
-//         res.status(500).send({ message: error.message })
-//     }
-// })
 
 module.exports = router;
