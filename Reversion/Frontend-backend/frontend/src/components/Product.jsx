@@ -3,12 +3,17 @@ import "./product.css"
 
 export const Product = () => {
     const [data, setdata] = useState([]);
+    const [brand, setbrand] = useState([]);
+    const [color, setcolor] = useState([]);
+    const [cate, setcate] = useState([]);
+    const [sort,setsort] = useState("sort_acc")
     useEffect(() => {
         fetchProduct()
-    }, []);
+    }, [color,cate,brand,sort]);
+    console.log(cate,"brand")
     const fetchProduct = async () => {
         try {
-            let res = await fetch(`http://localhost:3008/product`)
+            let res = await fetch(`http://localhost:3008/product?color=${color}&name=${brand}&type=${cate}&sort=${sort}`)
             let result = await res.json();
             setdata(result.product);
         } catch (error) {
@@ -46,6 +51,17 @@ export const Product = () => {
     }
     console.log(data)
    return <div>
+       <div className="Sorting">
+           <div>Total Items : {data.length}</div>
+           <div>
+               Price Sorting<select onChange ={(e)=>{
+                   setsort(e.target.value)
+               }}name="" id="">  
+                    <option value="sort_acc">Low to High</option>
+                   <option value="sort_dec">High to Low</option>
+               </select>
+            </div>
+       </div>
        <div className="mainContainer">
            <div className="filter_container">
                <div>
