@@ -5,10 +5,12 @@ app.use(express.json())
 const userController = require("./controllers/user.controller");
 const categoriesController =  require("./controllers/categories.controller");
 const ProductController =  require("./controllers/paoduct.controller");
+const BrandController =  require("./controllers/brand.controller")
 
 app.use("/users", userController);
 app.use("/category",categoriesController);
-app.use("/product",ProductController)
+app.use("/product",ProductController);
+app.use("/brand",BrandController)
 module.exports = app;
 app.listen("3008", async () => {
     try {
