@@ -6,11 +6,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+// import { Link, Navigate  } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 
 
 
 export  function User() {
+    let navigate = useNavigate();
+    // const history = useHistory();
     const [userlist,setuserlist] =  useState([])
     useEffect(()=>{
         fetchuserList()
@@ -20,6 +25,13 @@ export  function User() {
         let data =  await res.json();
         setuserlist(data)
     }
+    const userRedirect = (id)=>{
+        console.log("hello",id);
+        navigate(`/userdetails/:${id}`, { replace: false });
+        // history.push(`/userdetails/:${id}`)
+            // < Navigate to = {`/userdetails/:${id}`} replace = { true} />
+        // <Navigate  to = {`/userdetails/:${id}`}></Navigate>
+    } 
     console.log(userlist)
     return (
         <TableContainer component={Paper}>
@@ -38,16 +50,21 @@ export  function User() {
                       
                    {
                        userlist.map((e)=>{
-                           return <TableRow
+                           return <TableRow key={e._id} onClick={()=>{
+                               userRedirect(e._id)
+                           }}
 
-                               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                           >
+                                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                               >
+                               
 
-                               <TableCell align="center">{e._id}</TableCell>
-                               <TableCell align="center">{e.name}</TableCell>
-                               <TableCell align="center">{e.email}</TableCell>
-                               <TableCell align="center">{e.mobile}</TableCell>
-                           </TableRow>
+                                   <TableCell align="center">{e._id}</TableCell>
+                                   <TableCell align="center">{e.name}</TableCell>
+                                   <TableCell align="center">{e.email}</TableCell>
+                                   <TableCell align="center">{e.mobile}</TableCell>
+                               
+                               </TableRow>
+                          
                        })
                    }
                  
