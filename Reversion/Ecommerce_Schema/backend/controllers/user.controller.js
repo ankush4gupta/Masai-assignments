@@ -1,5 +1,4 @@
 const express = require("express");
-// const { router } = require("..");
 const route = express.Router();
 const User = require("../models/user.model");
 
@@ -7,11 +6,8 @@ const User = require("../models/user.model");
 route.get("/", async (req, res) => {
     try {
         let user = await User.find().lean().exec();
-        if (user) {
-
-            res.status(200).send(user)
-        }
-        res.status(404).send({})
+       
+        res.status(200).send(user)
 
     } catch (error) {
         res.status(500).send({ "meassge": error.meassge })
@@ -51,11 +47,9 @@ route.patch("/:id/edit", async (req, res) => {
             .lean()
             .exec();
 
-        
+        res.status(200).send(user)
 
-            res.status(200).send(user)
-     
-       
+
 
     } catch (error) {
         res.status(500).send({ "meassge": error.meassge })
@@ -92,8 +86,8 @@ route.patch("/:id/addressess/create", async (req, res) => {
 
 route.patch("/:id/addresses/:idx/edit", async (req, res) => {
     try {
-        let adress =  address._id
-        const user = await User.findone({ _id: req.params.id, adress : req.paramas.idx});
+        let adress = address._id
+        const user = await User.findone({ _id: req.params.id, adress: req.paramas.idx });
 
         // console.log("id: ", req.params.id, "idx: ", req.paramas.idx);
         return res.status(200).send(user);
