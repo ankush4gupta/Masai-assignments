@@ -8,17 +8,17 @@ export const Product = () => {
     const [brand, setbrand] = useState(searchParams.get("brand")||[]);
     const [color, setcolor] = useState(searchParams.get("color")||[]);
     const [cate, setcate] = useState(searchParams.get("cate")||[]);
-    const [sort, setsort] = useState("sort_acc");
+    const [sort, setsort] = useState(searchParams.get("sort") ||"sort_acc");
     const [page, setpage] = useState([]);
-    const [next,setnext]= useState(1)
+    const [next, setnext] = useState(searchParams.get("next")||1)
     
 
     useEffect(() => {
         fetchProduct()
     }, [color, cate, brand, sort, next]);
     useEffect(()=>{
-        setSearchParams({brand,color,cate})
-    },[brand,color,cate])
+        setSearchParams({brand,color,cate,sort,next})
+    }, [brand, color, cate, next, sort])
    
     console.log(cate, "brand")
     const fetchProduct = async () => {
