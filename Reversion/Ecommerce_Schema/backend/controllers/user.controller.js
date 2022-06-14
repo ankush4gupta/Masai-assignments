@@ -6,7 +6,7 @@ const User = require("../models/user.model");
 route.get("/", async (req, res) => {
     try {
         let user = await User.find().lean().exec();
-       
+
         res.status(200).send(user)
 
     } catch (error) {
@@ -27,11 +27,11 @@ route.post("/create", async (req, res) => {
 route.get("/:id", async (req, res) => {
     try {
         let user = await User.findById(req.params.id).lean().exec();
-        if (user) {
+        if (!user) {
 
-            res.status(200).send(user)
+            res.status(404).send({})
         }
-        res.status(404).send({})
+        res.status(200).send(user)
 
     } catch (error) {
         res.status(500).send({ "meassge": error.meassge })

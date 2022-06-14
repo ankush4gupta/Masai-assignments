@@ -32,6 +32,14 @@ route.get('/:id', async (req, res) => {
          res.status(500).send(error);
     }
 })
+route.get('/users/:id', async (req, res) => {
+    try {
+        let order = await Order.findById({userId:req.params.id}).lean().exec();
+        res.status(200).send(order);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+})
 // updating order by orderid
 
 route.patch('/:id/edit', async (req, res) => {
