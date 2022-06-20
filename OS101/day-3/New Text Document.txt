@@ -1,0 +1,50 @@
+1 Explain what HTTP is and how it is Unidirectional?
+
+Stands for "Hypertext Transfer Protocol." HTTP is the protocol used to transfer data
+over the web. It is part of the Internet protocol suite and defines commands and
+services used for transmitting webpage data. HTTP uses a server-client model. A client,
+for example, may be a home computer, laptop, or mobile device
+HTTP is unidirectional where the client sends the request and the server sends the response.
+
+What is IPv4 and IPv6
+	IPv4:- IPv4 is a version 4 of IP. It is a current version and the most commonly used IP address.
+It is a 32-bit address written in four numbers separated by 'dot', i.e., periods. This
+address is unique for each device.For example, 66.94.29.13
+The above example represents the IP address in which each group of numbers
+separated by periods is called an Octet. Each number in an octet is in the range from 0-
+255. This address can produce 4,294,967,296 possible unique addresses.
+
+IPv6 is the next generation of IP addresses. The main difference between IPv4 and
+IPv6 is the address size of IP addresses. The IPv4 is a 32-bit address, whereas IPv6 is
+a 128-bit hexadecimal address.IPv6 provides a large address space, and it contains a
+simple header as compared to IPv4.
+This hexadecimal address contains both numbers and alphabets. Due to the usage of
+both the numbers and alphabets, IPv6 is capable of producing over 340 undecillion
+addresses. IPv6 is a 128-bit hexadecimal address made up of 8 sets of 16 bits each,
+and these 8 sets are separated by a colon.
+
+
+Q.3 What is DNS?
+
+The Domain Name System (DNS) is the phonebook of the Internet. Humans access
+information online through domain names, like nytimes.com or espn.com. Web
+browsers interact through Internet Protocol (IP) addresses. DNS translates domain
+names to IP addresses so browsers can load Internet resources.Each device
+connected to the Internet has a unique IP address which other machines use to find
+the device. DNS servers eliminate the need for humans to memorize IP addresses
+such as 192.168.1.1 (in IPv4), or more complex newer alphanumeric IP addresses
+such as 2400:cb00:2048:1::c629:d7a2 (in IPv6).
+
+Q.4 Explain what CDN is ?
+CDN (Computer Delivery Network) is a system of distributed servers that deliver web
+pages and other web content to a user based on the geographic locations of the
+user, the origin of the webpage and a content delivery server.Suppose I am running
+the website outside the UK and I am serving the website all around the world. When
+the user wants to access my website, then they request to the web server, and users
+from different countries will have different latency
+
+Q.5 What is a DeadLock?
+A Deadlock is a situation where each of the computer process waits for a resource
+which is being assigned to some another process. In this situation, none of the process
+gets executed since the resource it needs, is held by some other process which is also
+waiting for some other resource to be released.
