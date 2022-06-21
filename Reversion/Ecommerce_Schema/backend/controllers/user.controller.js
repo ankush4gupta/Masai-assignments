@@ -16,7 +16,15 @@ route.get("/", async (req, res) => {
 //  creating user
 route.post("/create", async (req, res) => {
     try {
-        let user = await User.create(req.body);
+        // let user = await User.findOne({ email: { $regex: /m./, $options: req.email } })
+        // console.log(user,"user")
+        // if(user){
+        //     console.log(user.email)
+        //     res.send("already exist")
+        // }
+        // console.log(user)
+
+       let user = await User.create(req.body);
         res.status(200).send(user)
 
     } catch (error) {
