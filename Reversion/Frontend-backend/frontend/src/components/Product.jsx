@@ -67,7 +67,7 @@ export const Product = () => {
         }
 
     }
-    console.log(data)
+    // console.log(data)
     return <div>
         <div className="Sorting">
             <div>Total Items : {data.length}</div>
