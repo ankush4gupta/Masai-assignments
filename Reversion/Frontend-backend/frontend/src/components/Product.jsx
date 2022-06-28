@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import "./product.css"
 
-export const Product = () => {
+export const Product = ({ getdata }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [data, setdata] = useState([]);
     const [brand, setbrand] = useState(searchParams.get("brand")||[]);
@@ -26,6 +26,7 @@ export const Product = () => {
             let res = await fetch(`http://localhost:3008/product?color=${color}&name=${brand}&type=${cate}&sort=${sort}&page=${next}`)
             let result = await res.json();
             setdata(result.product);
+            getdata(result.product)
             setpage(result.pagecount);
 
             // setpage(result.pagecount);
